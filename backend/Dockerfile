@@ -7,11 +7,11 @@ ENV NODE_ENV=production
 
 COPY package.json package-lock.json ./
 COPY prisma ./prisma
-RUN npm ci --omit=dev && npx prisma generate && npm cache clean --force
+RUN npm install --omit=dev && npx prisma generate && npm cache clean --force
 
 COPY src ./src
 
-RUN mkdir -p /app/media && chown -R node:node /app
+RUN mkdir -p /app/media && chown -R node:node /app/media
 
 USER node
 EXPOSE 3000

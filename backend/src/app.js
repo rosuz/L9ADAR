@@ -1,8 +1,10 @@
 const express = require('express');
-const { PrismaClient } = require('@prisma/client');
+// const { PrismaClient } = require('@prisma/client');
+const userRoutes = require('./routes/user.routes');
+const prisma = require('./prisma.js');
 
 // One database connection pool for the whole process.
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 function createApp() {
   const app = express();
@@ -24,11 +26,14 @@ function createApp() {
     try {
       await prisma.$queryRaw`SELECT 1`;
       res.json({ status: 'ready' });
-    } catch {
+    } catch (error) {
       console.error(JSON.stringify({ level: 'error', msg: 'database check failed' }));
       res.status(503).json({ status: 'not_ready' });
     }
   });
+
+  // Feature Routes
+  app.use('/api/users', userRoutes);
 
   // Anything under /api that no route handled.
   app.use((_req, res) => {
