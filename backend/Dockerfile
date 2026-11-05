@@ -1,4 +1,6 @@
+# 6 security vulnubilities
 FROM node:24-alpine
+
 
 RUN apk add --no-cache openssl
 
@@ -7,7 +9,7 @@ ENV NODE_ENV=production
 
 COPY package.json package-lock.json ./
 COPY prisma ./prisma
-RUN npm install --omit=dev && npx prisma generate && npm cache clean --force
+RUN npm ci --omit=dev && npx prisma generate && npm cache clean --force
 
 COPY src ./src
 

@@ -67,6 +67,8 @@ services:
       timeout: 3s
       retries: 5
       start_period: 40s   # migrations run before the server starts
+    ports:
+      - "3000:3000"
 
 networks:
   app:

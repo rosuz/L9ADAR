@@ -43,7 +43,8 @@ dev-logs: ## Display the development logs
 
 migration: ## Create migration: make migration name=add_friends
 	@test -n "$(name)" || (echo "usage: make migration name=<name>" && exit 1)
-	$(COMPOSE_DEV) exec backend npx prisma migrate dev --name $(name)
+	$(COMPOSE) exec backend npx prisma migrate dev --name $(name)
+#	$(COMPOSE_DEV) exec backend npx prisma migrate dev --name $(name)
 
 
 
