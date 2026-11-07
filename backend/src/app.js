@@ -1,6 +1,7 @@
 const express = require('express');
 // const { PrismaClient } = require('@prisma/client');
 const userRoutes = require('./routes/user.routes');
+const authRoutes = require('./routes/auth.routes');
 const prisma = require('./prisma.js');
 
 // One database connection pool for the whole process.
@@ -33,6 +34,7 @@ function createApp() {
   });
 
   // Feature Routes
+  app.use('/api/auth', authRoutes);
   app.use('/api/users', userRoutes);
 
   // Anything under /api that no route handled.

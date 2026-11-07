@@ -7,11 +7,11 @@ RUN apk add --no-cache openssl
 WORKDIR /app
 ENV NODE_ENV=production
 
-COPY package.json package-lock.json ./
-COPY prisma ./prisma
+COPY --chown=node:node package.json package-lock.json ./
+COPY --chown=node:node prisma ./prisma
 RUN npm ci --omit=dev && npx prisma generate && npm cache clean --force
 
-COPY src ./src
+COPY --chown=node:node src ./src
 
 RUN mkdir -p /app/media && chown -R node:node /app/media
 
