@@ -79,10 +79,33 @@ services:
       retries: 5
       start_period: 40s   # migrations run before the server starts
 
+  gateway:
+    build: ./gateway
+    restart: unless-stopped
+    ports:
+      - "80:8080"    # your computer's port 80 -> gateway's port 8080 (redirects to HTTPS)
+      - "443:8443"   # your computer's port 443 -> gateway's port 8443 (the site)
+    volumes:
+      - media_data:/srv/media:ro   # read-only: the gateway serves photos, never writes them
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_healthy
+    networks:
+      - edge
+      - app
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-check-certificate -qO /dev/null https://127.0.0.1:8443/healthz || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
 networks:
-  app:
-  data:
-    internal: true
+  edge:            # where published ports live (gateway only)
+  app:             # gateway, frontend, backend, ai-service
+  data:            # postgres, backend, ai-service
+    internal: true # no route to the internet
 
 volumes:
   postgres_data:   # the database files
