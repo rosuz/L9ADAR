@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+:root { font-family: 'Outfit', sans-serif; color: #18211c; background: #f8faf6; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+a { color: inherit; }
+.icons { position: absolute; width: 0; height: 0; }
+svg { width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.login-page { min-height: 100dvh; max-width: 105rem; margin: auto; padding: clamp(1.5rem, 3vw, 3rem) clamp(1.5rem, 5vw, 5.5rem); background: #f8faf6; }
+.topbar { display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: .65rem; color: #244b3c; font-size: 1.8rem; text-decoration: none; }
+.brand svg { width: 2.6rem; height: 2.6rem; stroke-width: 1.7; }
+.language { display: flex; align-items: center; gap: .45rem; border: 0; background: none; color: #18211c; font-weight: 600; cursor: pointer; }
+.language svg { width: 1.3rem; }
+
+.content { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100dvh - 8rem); margin-top: 2rem; }
+.story { display: grid; align-content: center; min-width: 0; padding: 2rem clamp(2rem, 5vw, 5rem) 1rem 2.5rem; }
+.story h1 { margin: 0; font-size: clamp(3rem, 4.2vw, 5rem); line-height: .98; letter-spacing: -.06em; }
+.story h1 em { color: #397158; font-style: normal; }
+.story header > p { margin: 1.8rem 0 0; color: #5c6861; font-size: clamp(1rem, 1.5vw, 1.35rem); line-height: 1.45; }
+.room { width: 100%; max-height: 23rem; margin: .5rem 0 0; object-fit: contain; object-position: left bottom; }
+
+.benefits { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #dce5de; }
+.benefits > div { display: grid; justify-items: center; gap: .55rem; padding: 1.5rem .5rem 0; text-align: center; }
+.benefits > div + div { border-left: 1px solid #dce5de; }
+.benefits span { display: grid; place-items: center; width: 3rem; height: 3rem; border: 1px solid #b9cbbd; border-radius: 50%; color: #397158; }
+.benefits b { font-size: .95rem; }
+
+.login-panel { display: grid; place-items: center; border-left: 1px solid #dce5de; padding: 3rem clamp(2rem, 7vw, 7rem); }
+form { width: min(100%, 34rem); text-align: center; }
+.form-heading { margin-bottom: 2.8rem; }
+h2 { margin: 0; font-size: clamp(2rem, http://profile-v3.intra.42.fr/users/mtayb2.8vw, 3rem); letter-spacing: -.04em; }
+.form-heading p { margin: .7rem 0 0; color: #657069; font-size: 1.1rem; }
+
+form button, .field { width: 100%; min-height: 3.8rem; border-radius: .8rem; }
+form button { cursor: pointer; transition: transform .2s, background .2s; }
+form button:active { transform: translateY(1px); }
+.google { border: 1px solid #d4ded7; background: #fff; color: #18211c; font-weight: 600; box-shadow: 0 .35rem 1rem rgb(34 64 50 / 6%); }
+.google span { margin-right: .7rem; background: conic-gradient(from -45deg, #4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0); color: transparent; background-clip: text; font-size: 1.35rem; font-weight: 700; }
+.divider { display: flex; align-items: center; gap: 1.2rem; margin: 1.5rem 0; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #dce5de; }
+.divider span { font-weight: 600; }
+
+.field { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; padding: 0 1.2rem; border: 1px solid #d4ded7; background: #fff; color: #4f5b54; }
+.field:focus-within { border-color: #397158; box-shadow: 0 0 0 3px rgb(57 113 88 / 12%); }
+.field svg { flex: 0 0 auto; }
+.field input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #18211c; font-size: 1rem; }
+.field input::placeholder { color: #8c9690; }
+.submit { border: 0; background: #2d604b; color: #fff; font-weight: 600; }
+.submit:hover { background: #244b3c; }
+.forgot { display: inline-block; margin-top: 1.25rem; color: #2d604b; font-weight: 600; text-underline-offset: .18rem; }
+.signup { margin: 3.5rem 0 0; color: #606b64; }
+.signup a { color: #2d604b; font-weight: 700; text-decoration: none; }
+
+@media (max-width: 900px) {
+  .content { grid-template-columns: 1fr; }
+  .story { padding: 4rem 0 3rem; }
+  .room { max-height: 26rem; }
+  .login-panel { min-height: 42rem; border-top: 1px solid #dce5de; border-left: 0; padding: 4rem 1rem; }
+}
+
+@media (max-width: 560px) {
+  .login-page { padding: 1.25rem; }
+  .brand { font-size: 1.4rem; }
+  .brand svg { width: 2rem; height: 2rem; }
+  .story h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
+  .story header > p br { display: none; }
+  .room { margin-top: 2rem; }
+  .benefits { gap: .4rem; grid-template-columns: repeat(3, 1fr); padding-bottom: .5rem; }
+  .benefits > div + div { border-left: 0; }
+  .login-panel { padding-inline: 0; }
+  .signup { margin-top: 2.5rem; }
+}
